@@ -9,7 +9,7 @@ SECRET_KEY = "django-insecure-rxm8p@tt6cfhs5%l#p)_7p28lc82z%vgbl1kv1#74el2sz%=0+
 
 DEBUG = True
 
-ALLOWED_HOSTS = ['gos-voter.herokuapp.com']
+ALLOWED_HOSTS = ['*']
 
 INSTALLED_APPS = [
     "django.contrib.admin",
@@ -23,9 +23,12 @@ INSTALLED_APPS = [
     'phonenumber_field',
     'drf_yasg',
     'rest_framework_simplejwt.token_blacklist',
+    'corsheaders',
 
     'Voter.apps.VoterConfig',
 ]
+
+CORS_ORIGIN_ALLOW_ALL = True
 
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",

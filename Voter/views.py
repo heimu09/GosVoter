@@ -56,7 +56,6 @@ class CustomTokenObtainPairSerializer(TokenObtainPairSerializer):
             properties={
                 'phone': openapi.Schema(type=openapi.TYPE_STRING, description='Phone number'),
                 'password': openapi.Schema(type=openapi.TYPE_STRING, description='Password'),
-                'journalist_certificate': openapi.Schema(type=openapi.TYPE_FILE, description='Journalist certificate'),
             },
         ),
         responses={200: VoterSerializer()},
@@ -66,8 +65,7 @@ class CustomTokenObtainPairSerializer(TokenObtainPairSerializer):
 
         # authenticate the user
         voter = authenticate(self.context['request'], phone=attrs['phone'], password=attrs['password'])
-        journalist_certificate = self.context['request'].data.get('journalist_certificate')
-        print(journalist_certificate)
+
         if not voter:
             raise exceptions.AuthenticationFailed('Invalid login credentials')
 
