@@ -1,5 +1,6 @@
 from rest_framework import serializers
 from rest_framework_simplejwt.serializers import TokenObtainPairSerializer
+from cloudinary.uploader import upload
 from .models import Candidate, Nomination, Material, Voter
 
 
@@ -17,9 +18,19 @@ class CustomTokenObtainPairSerializer(TokenObtainPairSerializer):
 
 
 class VoterCertificateSerializer(serializers.ModelSerializer):
+    journalist_certificate = serializers.ImageField(max_length=None, use_url=True)
+
     class Meta:
         model = Voter
         fields = ['journalist_certificate']
+
+    def update(self, instance, validated_data):
+        if validated_data.get('journalist_certificate'):
+            # Загружаем изображение на Cloudinary и сохраняем его URL в модели
+            result = upload(validated_data.get('journalist_certificate'))
+            instance.journalist_certificate = result['url']
+            instance.save()
+        return instance
 
 
 class NominationSerializer(serializers.ModelSerializer):

@@ -1,10 +1,10 @@
 from django.db import models
 from django.contrib.auth.models import AbstractBaseUser, BaseUserManager, PermissionsMixin
 from django.core.exceptions import ValidationError
-from django.contrib.auth.hashers import make_password
 from phonenumber_field.modelfields import PhoneNumberField
 from .constants import NOMINATIONS
 from .utils import get_file_path
+from cloudinary.models import CloudinaryField
 
 
 class CustomUserManager(BaseUserManager):
@@ -33,7 +33,7 @@ class Voter(AbstractBaseUser, PermissionsMixin):
     phone = PhoneNumberField(unique=True)
     position = models.CharField(max_length=255, null=True)
     votes = models.PositiveIntegerField(default=10, editable=False)
-    journalist_certificate = models.ImageField(null=True, upload_to=get_file_path)
+    journalist_certificate = CloudinaryField('image', null=True)
 
     is_verified = models.BooleanField(default=False)
     is_active = models.BooleanField(default=True)

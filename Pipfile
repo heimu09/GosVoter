@@ -16,7 +16,7 @@ djangorestframework-simplejwt = "*"
 whitenoise = "*"
 gunicorn = "*"
 django-cors-headers = "*"
-pyyadisk = "*"
+cloudinary = "*"
 
 [dev-packages]
 

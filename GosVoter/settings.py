@@ -2,6 +2,15 @@ from pathlib import Path
 from datetime import timedelta
 
 import os
+import cloudinary
+
+
+cloudinary.config(
+  cloud_name = "dxunrl1zs",
+  api_key = "775654214963977",
+  api_secret = "n_S6OhpOjt38bYoosMHwGPMjKFU",
+  secure = True
+)
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
