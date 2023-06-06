@@ -9,12 +9,8 @@ djangorestframework = "*"
 django-filter = "*"
 django-phonenumber-field = {extras = ["phonenumbers"], version = "*"}
 pillow = "*"
-pandas = "*"
-openpyxl = "*"
 drf-yasg = "*"
 djangorestframework-simplejwt = "*"
-whitenoise = "*"
-gunicorn = "*"
 django-cors-headers = "*"
 cloudinary = "*"
 
